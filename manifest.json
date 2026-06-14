@@ -15,13 +15,13 @@
   ],
   "screenshots": [
   {
-    "src": "/53k3/img/ss-wide.png",
+    "src": "/53k3/img/ss_wide.png",
     "sizes": "1280x720",
     "type": "image/png",
     "form_factor": "wide"
   },
   {
-    "src": "/53k3/img/ss-mobile.png",
+    "src": "/53k3/img/ss_mobile.png",
     "sizes": "720x1280",
     "type": "image/png"
   }
