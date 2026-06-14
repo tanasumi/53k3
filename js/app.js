@@ -5,13 +5,17 @@ let stream = null;
 // カメラ起動
 document.getElementById('start-camera-btn').addEventListener('click', async () => {
   try {
-    stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } });
     const video = document.getElementById('camera-preview');
     video.srcObject = stream;
 
     document.getElementById('take-photo-btn').disabled = false;
   } catch (err) {
-    alert('カメラにアクセスできません: ' + err);
+    stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const video = document.getElementById('camera-preview');
+    video.srcObject = stream;
+
+    document.getElementById('take-photo-btn').disabled = false;
   }
 });
 
@@ -40,9 +44,11 @@ document.getElementById('take-photo-btn').addEventListener('click', () => {
 
 // 誤差計算
 document.getElementById('calc-error-btn').addEventListener('click', () => {
-  const cameraInput = document.getElementById('camera-time').value;
+  const deviceDate = document.getElementById('device-date').value;
+  const deviceTime = document.getElementById('device-time').value;
+  const cameraInput = deviceDate + 'T' + deviceTime;
   if (!captureTime || !cameraInput) {
-    alert('撮影日時とカメラ時刻を入力してください。');
+    alert('撮影日時と対象機器表示時刻を入力してください。');
     return;
   }
 
@@ -51,20 +57,22 @@ document.getElementById('calc-error-btn').addEventListener('click', () => {
   const seconds = Math.round(timeOffset / 1000);
 
   document.getElementById('error-result').textContent =
-    `誤差: ${seconds} 秒 (${seconds > 0 ? 'カメラが遅れている' : 'カメラが進んでいる'})`;
+    `誤差: ${seconds} 秒 (${seconds > 0 ? '対象機器の時刻が遅れている' : '対象機器の時刻が進んでいる'})`;
 });
 
 // 日時変換
 document.getElementById('convert-btn').addEventListener('click', () => {
-  const targetInput = document.getElementById('target-time').value;
+  const targetDate = document.getElementById('target-date').value;
+  const targetTime = document.getElementById('target-time').value;
+  const targetInput = targetDate + 'T' + targetTime;
   if (!timeOffset || !targetInput) {
     alert('誤差を計算してから日時を入力してください。');
     return;
   }
 
-  const targetTime = new Date(targetInput);
-  const cameraEquivalent = new Date(targetTime - timeOffset);
+  const targetDeviceTime = new Date(targetInput);
+  const cameraEquivalent = new Date(targetDeviceTime - timeOffset);
 
   document.getElementById('converted-time').textContent =
-    `防犯カメラ上の時刻: ${cameraEquivalent.toLocaleString()}`;
+    `対象機器上の時刻: ${cameraEquivalent.toLocaleString()}`;
 });

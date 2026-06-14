@@ -24,7 +24,7 @@
     <p id="capture-time">撮影日時: 未取得</p>
 
     <label for="camera-time">対象機器の時刻表示:</label>
-    <input type="datetime-local" id="camera-time" step="1">
+    <input type="date" id="device-date"><input type="time" id="device-time" step="1">
     <button id="calc-error-btn">誤差を計算</button>
     <p id="error-result">誤差: 未計算</p>
   </section>
@@ -32,7 +32,7 @@
   <section id="convert-section">
     <h2>日時変換</h2>
     <label for="target-time">確認したい実際の日時:</label>
-    <input type="datetime-local" id="target-time" step="1">
+    <input type="date" id="target-date"><input type="time" id="target-time" step="1">
     <button id="convert-btn">対象機器で確認すべき日時を表示</button>
     <p id="converted-time">結果: 未計算</p>
   </section>
