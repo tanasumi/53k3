@@ -1,10 +1,10 @@
 const CACHE_NAME = "53k3-cache-v1";
 const FILES_TO_CACHE = [
-  "/camera-time-drift/",
-  "/camera-time-drift/index.html",
-  "/camera-time-drift/css/style.css",
-  "/camera-time-drift/js/app.js",
-  "/camera-time-drift/manifest.json"
+  "/53k3/",
+  "/53k3/index.html",
+  "/53k3/css/style.css",
+  "/53k3/js/app.js",
+  "/53k3/manifest.json"
 ];
 
 self.addEventListener("install", event => {
