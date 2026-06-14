@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>53K3 -時刻誤差計算-</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>53K3 -時刻誤差計算-</h1>
+
+  <section id="capture-section">
+    <h2>対象機器の時刻表示を撮影してください。</h2>
+
+    <!-- カメラプレビュー -->
+    <video id="camera-preview" autoplay playsinline></video>
+    <button id="start-camera-btn">カメラを起動</button>
+    <button id="take-photo-btn" disabled>撮影</button>
+
+    <!-- 撮影画像 -->
+    <canvas id="photo-canvas" style="display:none;"></canvas>
+    <img id="captured-image" alt="撮影画像" style="max-width:100%; display:none;">
+
+    <p id="capture-time">撮影日時: 未取得</p>
+
+    <label for="camera-time">対象機器の時刻表示:</label>
+    <input type="datetime-local" id="camera-time" step="1">
+    <button id="calc-error-btn">誤差を計算</button>
+    <p id="error-result">誤差: 未計算</p>
+  </section>
+
+  <section id="convert-section">
+    <h2>日時変換</h2>
+    <label for="target-time">確認したい実際の日時:</label>
+    <input type="datetime-local" id="target-time" step="1">
+    <button id="convert-btn">対象機器で確認すべき日時を表示</button>
+    <p id="converted-time">結果: 未計算</p>
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
